@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState } from 'react'
 
 let baseUrl = '';
-if (window.location.href.split[0] === 'http') {
+if (window.location.href.split(':')[0] === 'http') {
   baseUrl = 'http://localhost:5001';
 }
 
@@ -14,6 +14,7 @@ function App() {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(cityName)
+
     axios.get(`${baseUrl}/weather/${cityName}`)
       .then(response => {
         console.log('response: ', response.data)
@@ -23,12 +24,25 @@ function App() {
         console.log("error: ", err);
       })
   }
-
   return (
-    <form onSubmit={submitHandler}>
-      <input type="text" onChange={e => { setCityName(e.target.value) }} />
-      <input type="submit" value='search' />
-    </form>
+    <>
+      <h1>Weather App</h1>
+      <form onSubmit={submitHandler}>
+        <input type="text" placeholder='City Name' onChange={e => { setCityName(e.target.value) }} />
+        <input type="submit" value='Search' />
+      </form>
+      {
+        (weatherData.length === 0) ? null :
+          <div className='weatherBox'>
+
+            City: {weatherData?.city}
+            <br />
+            Temperature: {Math.round(weatherData?.temp)}
+            <br />
+            Humidity: {Math.round(weatherData?.humidity)}
+          </div>
+      }
+    </>
   );
 }
 

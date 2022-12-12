@@ -6,9 +6,10 @@ const app = express()
 const port = process.env.PORT || 5001;
 app.use(cors());
 
-app.get('/weather', (req, res) => {
+app.get('/weather/:cityName', (req, res) => {
     console.log("request ip: ", req.ip);
     res.send({
+        city: req.params.cityName,
         temp: 30,
         humidity: 72,
         serverTime: new Date().toString()
