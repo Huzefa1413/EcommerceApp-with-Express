@@ -1,13 +1,101 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.addProduct {
+    display: flex;
+    flex-direction: column;
+}
+
+.addProduct>div {
+    margin: 10px;
+}
+
+.addProduct h2 {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: skyblue;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.navbar button {
+    font-size: 15px;
+    font-weight: bold;
+    background-color: skyblue;
+    border: 0;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.navbar button:hover {
+    background-color: white;
+}
+
+.allProducts {
+    /* background-color: red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    row-gap: 10px;
+    column-gap: 10px;
+    margin: 10px;
+}
+
+.allProducts .card {
+    width: 345px;
+    background-color: aqua;
+    box-shadow: 2px 2px 2px 2px skyblue;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.allProducts .cardImage {
+    width: 100%;
+}
+
+.allProducts .cardImage img {
+    width: 100%;
+}
+
+.allProducts .cardName {
+    font-size: 27px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.allProducts .cardPrice {
+    font-size: 23px;
+    font-family: Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
+}
+
+.allProducts .cardDescription {
+    word-wrap: break-word;
+}
+
+@media screen and (max-width:514px) {
+    .navbar {
+        justify-content: center;
+    }
+
+    .allProducts .card {
+        width: 90%;
+    }
 }
