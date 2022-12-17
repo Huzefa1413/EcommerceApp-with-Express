@@ -58,7 +58,6 @@
 .allProducts .card {
     width: 345px;
     background-color: aqua;
-    box-shadow: 2px 2px 2px 2px skyblue;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
@@ -88,6 +87,13 @@
 
 .allProducts .cardDescription {
     word-wrap: break-word;
+}
+
+.allProducts .cardButton {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
 }
 
 @media screen and (max-width:514px) {

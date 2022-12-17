@@ -15,7 +15,8 @@ app.post('/product', (req, res) => {
 
     if (!body.name || !body.price || !body.description) {
         res.status(400).send({
-            message: "Data Missing, Enter Complete Data"
+            message: "Data Missing, Enter Complete Data",
+            added: false
         }
         );
         return;
@@ -28,7 +29,8 @@ app.post('/product', (req, res) => {
         description: body.description
     });
     res.send({
-        message: "Product Added Successfully"
+        message: "Product Added Successfully",
+        added: true
     });
 })
 
@@ -79,7 +81,8 @@ app.put('/product/:id', (req, res) => {
             products[i].price = data.price;
             products[i].description = data.description;
             res.send({
-                message: "Product Edited Successfully"
+                message: "Product Edited Successfully",
+                added: true
             });
             isFound = true;
             break;
@@ -102,7 +105,7 @@ app.delete('/product/:id', (req, res) => {
         if (products[i].id === id) {
             products.splice(i, 1);
             res.send({
-                message: "Product Deleted Successfully"
+                message: "Product Deleted Successfully",
             });
             isFound = true;
             break;
