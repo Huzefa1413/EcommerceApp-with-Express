@@ -51,7 +51,7 @@ const ViewProducts = () => {
     const [openModal, setOpenModal] = React.useState(false);
 
     const handleClickModal = (product) => {
-        formik.setFieldValue("id", product.id);
+        formik.setFieldValue("id", product._id);
         formik.setFieldValue("name", product.name);
         formik.setFieldValue("price", product.price);
         formik.setFieldValue("description", product.description);
@@ -149,13 +149,13 @@ const ViewProducts = () => {
                             <>
                                 <div className="card">
                                     <div className="cardImage">
-                                        <img src="https://source.unsplash.com/345x140/?products" alt="Product" />
+                                        <img src={`https://source.unsplash.com/345x140/?${product.name}`} alt="Product" />
                                     </div>
                                     <div className="cardName">{product.name}</div>
                                     <div className="cardPrice">$ {product.price}</div>
                                     <div className="cardDescription">{product.description}</div>
                                     <div className="cardButton">
-                                        <Button onClick={() => { deleteProduct(product.id) }} variant="contained" color="error" startIcon={<DeleteIcon />}>
+                                        <Button onClick={() => { deleteProduct(product._id) }} variant="contained" color="error" startIcon={<DeleteIcon />}>
                                             Delete
                                         </Button>
                                         <Button onClick={() => { handleClickModal(product) }} variant="contained" startIcon={<EditIcon />}>
@@ -203,7 +203,8 @@ const ViewProducts = () => {
                                                 onChange={formik.handleChange}
                                             />
                                             <div>
-                                                <Button variant="contained" type='submit'>Edit Product</Button>
+                                                <Button variant="contained" onClick={handleCloseModal} style={{ "margin-right": "10px" }}>Cancel</Button>
+                                                <Button variant="contained" color="warning" type='submit'>Edit Product</Button>
                                             </div>
                                         </form>
                                     </DialogContent>
@@ -218,8 +219,6 @@ const ViewProducts = () => {
                     {alertMessage}
                 </Alert>
             </Snackbar>
-
-
         </>
     )
 }

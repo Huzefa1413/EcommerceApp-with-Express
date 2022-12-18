@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors'
+import mongoose from 'mongoose';
 
 const app = express()
 const port = process.env.PORT || 5001;
@@ -8,7 +9,19 @@ const port = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
-let products = []; //Add mongodb here
+const mongodbURI = process.env.mongodbURI || "mongodb+srv://huzefa1413:murtaza1413@ecommerceapp.fxfigx3.mongodb.net/EcommerceApp";
+
+let products = []; // TODO: connect with mongodb instead
+
+let productSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    price: Number,
+    description: String,
+    createdOn: { type: Date, default: Date.now }
+});
+const productModel = mongoose.model('products', productSchema);
+
+
 
 app.post('/product', (req, res) => {
     const body = req.body;
@@ -22,103 +35,101 @@ app.post('/product', (req, res) => {
         return;
     }
 
-    products.push({
-        id: `${new Date().getTime()}`,
+    productModel.create({
         name: body.name,
         price: body.price,
-        description: body.description
-    });
-    res.send({
-        message: "Product Added Successfully",
-        added: true
-    });
+        description: body.description,
+    },
+        (err, saved) => {
+            if (!err) {
+                res.send({
+                    message: "Product Added Successfully",
+                    added: true
+                });
+            } else {
+                res.status(500).send({
+                    message: "Server Error in Adding Products",
+                    added: false
+                })
+            }
+        })
 })
 
 app.get('/products', (req, res) => {
-    res.send({
-        message: "All Products Fetched Successfully",
-        data: products
+    productModel.find({}, (err, data) => {
+        if (!err) {
+            res.send({
+                message: "All Products Fetched Successfully",
+                data: data
+            })
+        } else {
+            res.status(500).send({
+                message: "Server Error in Fetching Products"
+            })
+        }
     });
 })
 
-app.get('/product/:id', (req, res) => {
+app.put('/product/:id', async (req, res) => {
+    const body = req.body;
     const id = req.params.id;
-    let isFound = false;
 
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].id === id) {
-            res.send({
-                message: "Product Fetched Successfully",
-                data: products[i]
-            });
-            isFound = true;
-            break;
-        }
-    }
-
-    if (!isFound) {
-        res.status(404);
-        res.send({
-            message: "Product Not Found"
-        });
-    }
-})
-
-app.put('/product/:id', (req, res) => {
-    const data = req.body;
-    const id = req.params.id;
-    let isFound = false;
-
-    if (!data.name && !data.price && !data.description) {
+    if (!body.name || !body.price || !body.description) {
         res.status(400).send({
-            message: "Data Missing, Enter Complete Data"
+            message: "Data Missing, Enter Complete Data",
+            added: false
         });
         return;
     }
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].id === id) {
-            products[i].name = data.name;
-            products[i].price = data.price;
-            products[i].description = data.description;
-            res.send({
-                message: "Product Edited Successfully",
-                added: true
-            });
-            isFound = true;
-            break;
-        }
-    }
 
-    if (!isFound) {
-        res.status(404);
+    try {
+        let data = await productModel.findByIdAndUpdate(id,
+            {
+                name: body.name,
+                price: body.price,
+                description: body.description
+            },
+            { new: true }
+        ).exec();
         res.send({
-            message: "Product Not Found"
+            message: "Product Edited Successfully",
+            added: true
         });
+
+    } catch (error) {
+        res.status(500).send({
+            message: "Server Error in Editing Products",
+            added: false
+        })
     }
 })
 
 app.delete('/product/:id', (req, res) => {
     const id = req.params.id;
-    let isFound = false;
 
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].id === id) {
-            products.splice(i, 1);
-            res.send({
-                message: "Product Deleted Successfully",
-            });
-            isFound = true;
-            break;
+    productModel.deleteOne({ _id: id }, (err, deletedData) => {
+        console.log("deleted: ", deletedData);
+        if (!err) {
+
+            if (deletedData.deletedCount !== 0) {
+                res.send({
+                    message: "Product Deleted Successfully",
+                })
+            } else {
+                res.status(404);
+                res.send({
+                    message: "No Product found with this id: " + id,
+                });
+            }
+        } else {
+            res.status(500).send({
+                message: "Server Error in Deleting Products"
+            })
         }
-    }
-
-    if (!isFound) {
-        res.status(404);
-        res.send({
-            message: "Product Not Found"
-        });
-    }
+    });
 })
+
+
 
 const __dirname = path.resolve();
 app.use('/', express.static(path.join(__dirname, './web/build')))
@@ -127,3 +138,30 @@ app.use('*', express.static(path.join(__dirname, './web/build')))
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+mongoose.connect(mongodbURI);
+
+////////////////mongodb connected disconnected events///////////////////////////////////////////////
+mongoose.connection.on('connected', function () {//connected
+    console.log("Mongoose is connected");
+});
+
+mongoose.connection.on('disconnected', function () {//disconnected
+    console.log("Mongoose is disconnected");
+    process.exit(1);
+});
+
+mongoose.connection.on('error', function (err) {//any error
+    console.log('Mongoose connection error: ', err);
+    process.exit(1);
+});
+
+process.on('SIGINT', function () {/////this function will run jst before app is closing
+    console.log("app is terminating");
+    mongoose.connection.close(function () {
+        console.log('Mongoose default connection closed');
+        process.exit(0);
+    });
+});
+////////////////mongodb connected disconnected events///////////////////////////////////////////////

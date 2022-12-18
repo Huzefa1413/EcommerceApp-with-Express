@@ -40,7 +40,6 @@ const AddProducts = () => {
         setOpen(false);
         setSeverity("");
     };
-
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -59,7 +58,7 @@ const AddProducts = () => {
                 .string("Enter Product Description")
                 .required("Description is required"),
         }),
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             setLoading(true);
             axios.post(`${baseUrl}/product`, {
                 name: values.name,
@@ -76,8 +75,10 @@ const AddProducts = () => {
                     setLoading(false);
                     handleClick("Error Adding Products", "error");
                 })
+            resetForm({ values: '' });
         }
     })
+
     return (
         <>
             {(loading) ?
@@ -88,6 +89,7 @@ const AddProducts = () => {
                 <form className='addProduct' onSubmit={formik.handleSubmit}>
                     <h2>Add Product</h2>
                     <TextField
+                        autoFocus
                         error={(formik.touched.name && formik.errors.name) ? true : false}
                         name='name'
                         id="filled-error-helper-text"

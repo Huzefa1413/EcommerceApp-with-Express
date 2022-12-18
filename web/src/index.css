@@ -50,7 +50,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    row-gap: 10px;
+    row-gap: 30px;
     column-gap: 10px;
     margin: 10px;
 }
@@ -63,6 +63,7 @@
     row-gap: 10px;
     padding: 10px;
     border-radius: 10px;
+    height: fit-content;
 }
 
 .allProducts .cardImage {
