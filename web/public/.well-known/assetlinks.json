@@ -1,6 +1,0 @@
-[{
-        "relation": ["delegate_permission/common.handle_all_urls"],
-        "target" : { "namespace": "android_app", "package_name": "app.cyclic.ecommercestore.twa",
-                     "sha256_cert_fingerprints": ["42:0F:C6:2A:F1:BF:BD:CF:CE:47:8C:88:78:D5:E9:88:06:0C:4C:6A:82:EB:7B:22:D1:3C:EE:AA:BD:C4:A2:41"] }
-      }
-]
