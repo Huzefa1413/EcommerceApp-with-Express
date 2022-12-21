@@ -9,7 +9,64 @@
 </head>
 
 <body>
-    <h1>You are offline</h1>
+    <div class="main">
+        <div class="img"><img src="./no-internet-connection.png" alt=""></div>
+        <div>
+            <h2>Whoops!</h2>
+        </div>
+        <div>
+            <p>No Internet connection found. Check your connection or try again</p>
+        </div>
+    </div>
 </body>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+
+    .main {
+        width: 100%;
+        background-color: #f7f7f7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 10vh;
+        height: 100vh;
+    }
+
+    h2 {
+        color: #a7a7a7;
+        font-size: 60px;
+        letter-spacing: 2px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    p {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: #a7a7a7;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    div.img {
+        text-align: center;
+    }
+
+    @media screen and (max-width: 300px) {
+        img {
+            width: 90%;
+        }
+
+        h2 {
+            font-size: 20vw;
+        }
+
+        p {
+            font-size: 10vw;
+        }
+    }
+</style>
 
 </html>
