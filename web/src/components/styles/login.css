@@ -1,0 +1,153 @@
+div.background {
+    height: 100vh;
+    width: 100%;
+    background-image: url("/src/components/assets/blue-liquid-marble-background-diy-flowing-texture-experimental-art.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.background div.main-container {
+    width: 80%;
+    display: flex;
+    background-color: white;
+}
+
+div.background div.main-container div.left-div {
+    width: 20%;
+    border-right: 1px solid rgb(0, 0, 0);
+}
+
+div.background div.main-container div.left-div div.left-loginbtn {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+div.background div.main-container div.left-div div.left-loginbtn:hover {
+    transition: 1s;
+    background-color: #46cac4;
+}
+
+div.background div.main-container div.left-div div.left-signupbtn {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+div.background div.main-container div.left-div div.left-signupbtn:hover {
+    transition: 1s;
+    background-color: #46cac4;
+}
+
+div.background div.main-container div.right-div {
+    width: 80%;
+}
+
+div.background div.main-container div.right-div form.loginform {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding-left: 30px;
+}
+
+div.background div.main-container div.right-div form.loginform h3.title {
+    font-size: 2.2rem;
+    color: #444;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+div.background div.main-container div.right-div form.loginform div.input-field-login {
+    width: 100%;
+    height: 40px;
+    margin: 10px;
+}
+
+div.background div.main-container div.right-div form.loginform div.input-field-login>input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid gray;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+div.background div.main-container div.right-div form.loginform div.error {
+    width: 100%;
+    color: red;
+    text-align: left;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+div.background div.main-container div.right-div form.loginform input.btnlogin {
+    width: 150px;
+    outline: none;
+    height: 49px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+    text-align: center;
+    background-color: #00A8F3;
+    border: none;
+}
+
+div.background div.main-container div.right-div form.loginform input.btnlogin:hover {
+    background-color: #46cac4;
+}
+
+div.background div.main-container div.right-div form.loginform div.already {
+    display: flex;
+    column-gap: 10px;
+    margin: 20px 0px;
+}
+
+div.background div.main-container div.right-div form.loginform div.already button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    color: #00A8F3;
+}
+
+@media screen and (max-width: 760px) {
+    div.background div.main-container {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+    }
+
+    div.background div.main-container div.left-div {
+        width: 100%;
+        display: flex;
+        border-right: none;
+        border-bottom: 1px solid rgb(0, 0, 0);
+    }
+
+    div.background div.main-container div.left-div div.left-loginbtn {
+        width: 50%;
+        padding: 20px 0px;
+    }
+
+    div.background div.main-container div.left-div div.left-signupbtn {
+        width: 50%;
+        padding: 20px 0px;
+    }
+
+    div.background div.main-container div.right-div {
+        text-align: center;
+        width: 100%;
+    }
+}

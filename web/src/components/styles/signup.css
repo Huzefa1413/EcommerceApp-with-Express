@@ -1,0 +1,168 @@
+div.background {
+    height: 100vh;
+    width: 100%;
+    background-image: url("/src/components/assets/blue-liquid-marble-background-diy-flowing-texture-experimental-art.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.background div.main-container {
+    width: 80%;
+    display: flex;
+    background-color: white;
+}
+
+div.background div.main-container div.left-div {
+    width: 20%;
+    border-right: 1px solid rgb(0, 0, 0);
+}
+
+div.background div.main-container div.left-div div.left-loginbtn {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+div.background div.main-container div.left-div div.left-loginbtn:hover {
+    transition: all 1s;
+    background-color: #46cac4;
+}
+
+div.background div.main-container div.left-div div.left-signupbtn {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+div.background div.main-container div.left-div div.left-signupbtn:hover {
+    transition: all 1s;
+    background-color: #46cac4;
+}
+
+div.background div.main-container div.right-div {
+    width: 80%;
+}
+
+div.background div.main-container div.right-div div.row {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+div.background div.main-container div.right-div form.signupform {
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 20px;
+    overflow: hidden;
+}
+
+div.background div.main-container div.right-div form.signupform h3.title {
+    font-size: 2.2rem;
+    color: #444;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+div.background div.main-container div.right-div div.row div.input-fieldsignup {
+    width: 45%;
+    margin: 10px 0;
+    height: 40px;
+}
+
+div.background div.main-container div.right-div div.row div.input-fieldsignup>input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid gray;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+div.background div.main-container div.right-div form.signupform div.error {
+    width: 100%;
+    color: red;
+    text-align: left;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+div.background div.main-container div.right-div form.signupform input.btnsignup {
+    width: 150px;
+    border: none;
+    height: 49px;
+    background-color: #00A8F3;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0 10px 20px;
+    cursor: pointer;
+    transition: 0.5s;
+    text-align: center;
+}
+
+div.background div.main-container div.right-div form.signupform input.btnsignup:hover {
+    background-color: #46cac4;
+}
+
+div.background div.main-container div.right-div form.signupform div.already {
+    display: flex;
+    column-gap: 10px;
+    margin: 20px 0px;
+}
+
+div.background div.main-container div.right-div form.signupform div.already button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    color: #00A8F3;
+}
+
+@media screen and (min-width: 320px) and (max-width: 760px) {
+    div.background div.main-container {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+    }
+
+    div.background div.main-container div.left-div {
+        width: 100%;
+        display: flex;
+        border-right: none;
+        border-bottom: 1px solid rgb(0, 0, 0);
+    }
+
+    div.background div.main-container div.left-div div.left-loginbtn {
+        width: 50%;
+        padding: 20px 0px;
+    }
+
+    div.background div.main-container div.left-div div.left-signupbtn {
+        width: 50%;
+        padding: 20px 0px;
+    }
+
+    div.background div.main-container div.right-div {
+        text-align: center;
+        width: 100%;
+    }
+
+    div.background div.main-container div.right-div div.row {
+        flex-direction: column;
+    }
+
+    div.background div.main-container div.right-div div.row div.input-fieldsignup {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
